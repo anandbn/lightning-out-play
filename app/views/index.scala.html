@@ -1,0 +1,37 @@
+@(message: String)
+
+@main("Welcome to Play") {
+	
+		<div class="container">
+			<div class="jumbotron">
+				<h1>Lightning Out on Heroku</h1>
+				<button class="btn btn-primary btn-lg" onclick="forceLogin()">
+					Login to Salesforce
+				</button>
+				<button id="chatterFeedButton" class="btn btn-primary btn-lg" 
+						onclick="createChatterFeed('NEWS')" style="display: none">
+					Create Chatter Feed
+				</button>
+				<button id="recordViewButton" class="btn btn-primary btn-lg" 
+						onclick="viewRecord('0017000000NkNaq','MINI')" style="display: none">
+					View Record
+				</button>
+				<button id="helloWorldButton" class="btn btn-primary btn-lg" 
+						onclick="customComponent()" style="display: none">
+					Custom Lighting Component
+				</button>
+			</div>
+			<div id="chatterFeed"/>
+			<div id="recordView"/>
+			<div id="customComponent"/>
+		</div>
+		<script>
+			var config = {
+				appId: '3MVG9VmVOCGHKYBT1qqbQJTR6csZMu4Qclyu9_6ExDmYwylqU5pd4ftvwQ860V7AFMfe.xtqsaOQYEZVnNGJm',
+				loApp: 'c:LoTest'
+			};
+		</script>
+		<script src="@routes.Assets.versioned("javascripts/force.oauth.js")"></script>
+		<script src="@routes.Assets.versioned("javascripts/app.js")"></script>
+		<script src="https://ltngout-dev-ed.my.salesforce.com/lightning/lightning.out.js"></script>
+}
