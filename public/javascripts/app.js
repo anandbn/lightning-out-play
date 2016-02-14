@@ -27,10 +27,10 @@ function setupLightning(callback) {
 		}
 	} else {
 	    //Use a proxy URL to avoid dealing with CORS
-	    var url = "/salesforce/proxy"; 
+	    //var url = "/salesforce/proxy"; 
 
 	    // Transform the URL for Lightning
-	    //oauth.instanceUrl.replace("my.salesforce", "lightning.force");
+	    var url = oauth.instanceUrl.replace("my.salesforce", "lightning.force");
 
 	    $Lightning.use(appName, 
 	        function() {
