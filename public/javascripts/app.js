@@ -27,10 +27,13 @@ function setupLightning(callback) {
 		}
 	} else {
 	    //Use a proxy URL to avoid dealing with CORS
-	    var url = "/salesforce"; 
+	    //var url = "/salesforce"; 
 
 	    // Transform the URL for Lightning
-	    //var url = oauth.instanceUrl.replace("my.salesforce", "lightning.force");
+	    var url = oauth.instanceUrl.replace("my.salesforce", "lightning.force");
+
+	    //Set the instance Url in a cookie
+	    setCookie("instanceUrl",oauth.instanceUrl.replace("my.salesforce", "lightning.force"));
 
 	    $Lightning.use(appName, 
 	        function() {
@@ -38,6 +41,7 @@ function setupLightning(callback) {
 				document.getElementById("chatterFeedButton").style.display = "";
 				document.getElementById("recordViewButton").style.display = "";
 				document.getElementById("helloWorldButton").style.display = "";
+				document.getElementById("viewContactsButton").style.display = "";
 				if (typeof callback === "function") {
 					callback();
 				}
@@ -61,4 +65,15 @@ function customComponent() {
     setupLightning(function() {
 		$Lightning.createComponent("c:HelloWorld", {}, "customComponent"); 
     });
+}
+
+function viewContacts() {
+    setupLightning(function() {
+		$Lightning.createComponent("c:Contacts", {}, "contacts"); 
+    });
+}
+
+
+function setCookie(cname, cvalue) {
+    document.cookie = cname + "=" + cvalue + "; " ;
 }
