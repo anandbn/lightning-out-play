@@ -27,10 +27,10 @@ function setupLightning(callback) {
 		}
 	} else {
 	    //Use a proxy URL to avoid dealing with CORS
-	    //var url = "/salesforce"; 
+	    var url = "/salesforce"; 
 
 	    // Transform the URL for Lightning
-	    var url = oauth.instanceUrl.replace("my.salesforce", "lightning.force");
+	    //var url = oauth.instanceUrl.replace("my.salesforce", "lightning.force");
 
 	    //Set the instance Url in a cookie
 	    setCookie("instanceUrl",oauth.instanceUrl.replace("my.salesforce", "lightning.force"));
@@ -40,8 +40,7 @@ function setupLightning(callback) {
 				_lightningReady = true;
 				document.getElementById("chatterFeedButton").style.display = "";
 				document.getElementById("recordViewButton").style.display = "";
-				document.getElementById("helloWorldButton").style.display = "";
-				document.getElementById("viewContactsButton").style.display = "";
+				document.getElementById("customComponentBtn").style.display = "";
 				if (typeof callback === "function") {
 					callback();
 				}
@@ -55,21 +54,10 @@ function createChatterFeed(type, subjectId) {
     });
 }
 
-function viewRecord(recordId,type) {
-    setupLightning(function() {
-		$Lightning.createComponent("force:recordView", {type: type, recordId:recordId}, "recordView"); 
-    });
-}
 
 function customComponent() {
     setupLightning(function() {
 		$Lightning.createComponent("c:HelloWorld", {}, "customComponent"); 
-    });
-}
-
-function viewContacts() {
-    setupLightning(function() {
-		$Lightning.createComponent("c:Contacts", {}, "contacts"); 
     });
 }
 

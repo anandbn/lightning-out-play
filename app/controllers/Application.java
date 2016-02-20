@@ -17,7 +17,9 @@ public class Application extends Controller {
 	@Inject WSClient ws;
 	
     public Result index() {
-        return ok(index.render("Your new application is ready."));
+        return ok(index.render( Play.application().configuration().getString("lightning.app.name"),
+                                Play.application().configuration().getString("lightning.oauth.consumerKey"))
+        );
     }
     
     public Result oauthcallback() {
